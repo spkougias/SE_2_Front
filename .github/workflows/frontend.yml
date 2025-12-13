@@ -28,17 +28,16 @@ jobs:
       - name: Install dependencies
         run: npm install  # 👈 CHANGED BACK from 'npm ci' to 'npm install'
 
-      # Run Cypress
       - name: Run Cypress Tests
         uses: cypress-io/github-action@v6
         with:
           working-directory: ./Front_1
-          start: npx serve -l 3000
+          # Change: Tell 'serve' to use the 'public' folder as the root
+          start: npx serve -l 3000 public 
           wait-on: 'http://localhost:3000'
-          wait-on-timeout: 60 # Give the server ample time to start
+          wait-on-timeout: 60
           browser: chrome
           spec: cypress/e2e/First_Test.cy.js
-
   # JOB 2: DEPLOY (Only runs if tests pass)
   cd:
     runs-on: ubuntu-latest
