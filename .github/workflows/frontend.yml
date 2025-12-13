@@ -18,13 +18,15 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
+        
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20  # 👈 UPDATED: Cypress prefers Node 20+
 
       - name: Install dependencies
-        run: npm ci # 👈 'npm ci' is faster and safer for CI than 'npm install'
+        run: npm install  # 👈 CHANGED BACK from 'npm ci' to 'npm install'
 
       # Run Cypress
       - name: Run Cypress Tests
