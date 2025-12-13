@@ -99,7 +99,10 @@
         const FilterIcon = (props) => <IconWrapper {...props}><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></IconWrapper>;
 
         // --- API CONFIGURATION ---
-        const API_URL = 'http://localhost:8080';
+        // In index.html
+        const API_URL = window.location.hostname === 'localhost' 
+            ? 'http://localhost:8080' 
+            : 'https://se-2-back.onrender.com';
         
         // --- CONSTANTS ---
         const CATEGORIES = ['Party','Concert','Bazaar','Movie Night','Competition','Workshop','Food Event','Other'];
