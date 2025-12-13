@@ -12,7 +12,8 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./Front_1  # <--- CRITICAL: Tells GitHub code is in subfolder
+        working-directory: ./Front_1  # 👈 Keeps all commands in your subfolder
+
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
@@ -20,22 +21,23 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20  # 👈 UPDATED: Cypress prefers Node 20+
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci # 👈 'npm ci' is faster and safer for CI than 'npm install'
 
       # Run Cypress
       - name: Run Cypress Tests
         uses: cypress-io/github-action@v6
         with:
-          working-directory: ./Front_1 # <--- Cypress needs this too
+          working-directory: ./Front_1
           start: npx serve -l 3000
           wait-on: 'http://localhost:3000'
+          wait-on-timeout: 60 # Give the server ample time to start
           browser: chrome
           spec: cypress/e2e/First_Test.cy.js
 
-  # JOB 2: DEPLOY
+  # JOB 2: DEPLOY (Only runs if tests pass)
   cd:
     runs-on: ubuntu-latest
     needs: ci
