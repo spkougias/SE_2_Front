@@ -1,6 +1,4 @@
-# Front-End
-Finale Frontend update, reviewed.
-We also include the relevant pdfs from the first assignment
+# BeThere Platform: Front-End
+Final Frontend update, reviewed.
 
-
-Finale Frontend testing update, every test passes.
+Final Frontend testing update, every test passes.
